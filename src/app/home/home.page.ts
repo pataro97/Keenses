@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Device } from '@ionic-native/device/ngx';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,9 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private device: Device) {}
 
+  async ngOnInit() {
+    document.getElementById('getMac').innerHTML = await this.device.uuid;
+  }
 }

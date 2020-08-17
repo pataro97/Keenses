@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "keenses-pro": {
+      "hosting": {
+        "app": [
+          "keenses-pro"
+        ]
+      }
+    }
+  }
+}
