@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Device } from '@ionic-native/device/ngx';
-
+import { Router } from "@angular/router";
+import { FirestoreService } from '../services/firestore/firestore.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,35 @@ import { Device } from '@ionic-native/device/ngx';
 })
 export class HomePage {
 
-  constructor(private device: Device) {}
+  dbUsuarios: any = {
+    id: "",
+    data: {}
+  };
 
-  async ngOnInit() {
-    document.getElementById('getMac').innerHTML = await this.device.uuid;
+  constructor(private router: Router, private firestoreService: FirestoreService) {  }
+
+  ngOnInit() {
+
+    let UUID = this.router.url.replace('/home/', '');
+
+    this.firestoreService.consultarPorId("usuarios", UUID).subscribe((resultado) => {
+      // Preguntar si se hay encontrado un document con ese ID
+      if(resultado.payload.data() != null) {
+        this.dbUsuarios.id = resultado.payload.id;
+        this.dbUsuarios.data = resultado.payload.data();
+        this.hiddenPrBar();
+      } else {
+        // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
+        alert("no se ha encontrado");
+        this.hiddenPrBar();
+      }
+    });
+    
   }
+
+  hiddenPrBar() {
+    // ocultar barra de carga
+    document.getElementById('progressBI').setAttribute("style", "visibility: hidden");
+  }
+
 }
