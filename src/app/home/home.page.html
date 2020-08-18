@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Inicio
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,13 +14,12 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <p id="getMac"></p>
-    <ion-item>
-      <mat-card>{{dbUsuarios.data.id}}</mat-card>
-    </ion-item>
+  <!-- Listas  -->
+  <ion-item *ngFor="let arrayLista of dbUsuarios.data.listas">
+    <mat-card>{{arrayLista}}</mat-card>
+  </ion-item>
+  <!-- Mensaje si no hay listas -->
+  <div id="container" style="visibility: hidden;">
+    <strong>No  hay ninguna lista creada</strong>
   </div>
 </ion-content>

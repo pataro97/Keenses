@@ -38,5 +38,12 @@ export class FirestoreService {
     return storageRef.putString("data:image/jpeg;base64,"+imagenBase64, 'data_url');
   }
 
-  
+  // Registro con datos personalizado usuarios>>uid>>datos
+  public registro (nomColl, uid) {
+    return this.angularFirestore.collection(nomColl).doc(uid).set({
+      //campos creados base datos
+      uid: uid
+    })
+  }
+
 }

@@ -29,7 +29,8 @@ export class HomePage {
         this.hiddenPrBar();
       } else {
         // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
-        alert("no se ha encontrado");
+        document.getElementById('container').setAttribute("style", "visibility: visible");
+        this.escribirUUID(UUID);
         this.hiddenPrBar();
       }
     });
@@ -39,6 +40,10 @@ export class HomePage {
   hiddenPrBar() {
     // ocultar barra de carga
     document.getElementById('progressBI').setAttribute("style", "visibility: hidden");
+  }
+
+  escribirUUID(UUID) {
+    this.firestoreService.registro('usuarios', UUID);
   }
 
 }
