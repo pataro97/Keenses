@@ -16,10 +16,16 @@
   </ion-header>
   <!-- Listas  -->
   <ion-item *ngFor="let arrayLista of dbUsuarios.data.listas">
-    <mat-card>{{arrayLista}}</mat-card>
+    <mat-card>{{arrayLista}}</mat-card><ion-icon name="trash-outline"></ion-icon>
   </ion-item>
   <!-- Mensaje si no hay listas -->
   <div id="container" style="visibility: hidden;">
     <strong>No  hay ninguna lista creada</strong>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" id="nuevo" (click)="clicNuevo()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
 </ion-content>

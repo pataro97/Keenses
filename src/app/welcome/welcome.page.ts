@@ -23,10 +23,10 @@ export class WelcomePage implements OnInit {
     }
     else{
       // ha entrado alguna vez(no logeado)
-      this.goLogin();
+      this.goHome();
     }
   }
-  goLogin() {
+  goHome() {
     this.router.navigate(["/home/"+this.devices.uuid]);
   }
 

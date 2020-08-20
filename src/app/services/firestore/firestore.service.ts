@@ -42,8 +42,19 @@ export class FirestoreService {
   public registro (nomColl, uid) {
     return this.angularFirestore.collection(nomColl).doc(uid).set({
       //campos creados base datos
-      uid: uid
+      uid: uid,
+      listas: []
     })
   }
+
+
+  // actualizar mod
+  public actualizarMod(coleccion, documentId, datos) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).set({
+      uid: documentId,
+      listas: datos
+    });
+  }
+  
 
 }
