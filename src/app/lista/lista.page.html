@@ -17,16 +17,27 @@
         <h2>Lentillas</h2>
         <div id="estadoLentillas">
           <h3>Estado de las lentillas:<a id="colorEstado">{{estadoLen}}</a></h3>
+          <p>Fecha: {{this.dbUsuarios.data.dia}}/{{this.dbUsuarios.data.mes}}/{{this.dbUsuarios.data.year}}</p>
           <ion-grid>
             <ion-row>
               <ion-col>
-                <div>1 of 2</div>
+                <div>Dias de uso: {{this.dbUsuarios.data.diasUso}}</div>
               </ion-col>
               <ion-col>
-                <div>2 of 2</div>
+                <div><ion-button (click)="res()"><ion-icon name="remove-circle-outline"></ion-icon></ion-button> <ion-button (click)="sum()"><ion-icon name="add-circle-outline"></ion-icon></ion-button></div>
+              </ion-col>
+            </ion-row>
+            <!-- liquido -->
+            <ion-row>
+              <ion-col id="mostrarDias">
+                <div>Dias restantes liquido: {{this.dbUsuarios.data.diasLiq}}</div>
+              </ion-col>
+              <ion-col id="mostrarError">
+                <div>No hay liquido registrado</div>
               </ion-col>
             </ion-row>
           </ion-grid>
+          <ion-button (click)="comenzarLent()">Nuevas Lentillas</ion-button>
           <ion-button fill="clear"><h3><b>{{text}}</b></h3></ion-button>
         </div>
         <div id="mensajeNoLentillas">
