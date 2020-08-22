@@ -50,52 +50,82 @@ export class HomePage {
     this.firestoreService.registro('usuarios', UUID);
   }
 // boton añadir
-  async clicNuevo() {
-    const alert = await this.alertController.create({
-      header: 'Nueva lista',
-      message: 'Nombre de la lista:',
-      inputs: [
-        {
-          name: 'name1',
-          type: 'text'
-        }],    
-       buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel',
-              cssClass: 'secondary',
-              handler: () => {
-                console.log('Confirm Cancel');
-              }
-            }, {
-              text: 'Ok',
-              handler: (alertData) => {
-                console.log(alertData.name1);
-                let cont = true;
-                if(alertData.name1 != "") {
-                  let arrayObtenido = [];
-                    for(let i = 0; this.dbUsuarios.data.listas.length > i ; i++) {
-                      arrayObtenido.push(this.dbUsuarios.data.listas[i]);
-                      if (this.dbUsuarios.data.listas[i] == alertData.name1){
-                        console.log("existe mismo nombre")
-                        cont = false;
+  async clicNuevo(log) {
+    if(log != true) {
+      log = false;
+      const alert = await this.alertController.create({
+        header: 'Nueva lista',
+        message: 'Nombre de la lista:',
+        inputs: [
+          {
+            name: 'name1',
+            type: 'text'
+          }],    
+         buttons: [
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                cssClass: 'secondary',
+                handler: () => {
+                  console.log('Confirm Cancel');
+                }
+              }, {
+                text: 'Ok',
+                handler: (alertData) => {
+                  document.getElementById('container').setAttribute("style", "visibility: visible");
+                  console.log(alertData.name1);
+                  let cont = true;
+                  if(alertData.name1 != "") {
+                    let arrayObtenido = [];
+                      for(let i = 0; this.dbUsuarios.data.listas.length > i ; i++) {
+                        arrayObtenido.push(this.dbUsuarios.data.listas[i]);
+                        if (this.dbUsuarios.data.listas[i] == alertData.name1){
+                          console.log("existe el mismo nombre")
+                          cont = false;
+                          this.clicNuevo(true);
+                        }
                       }
-                    }
-                    if(cont) {
-                      arrayObtenido.push(alertData.name1);
-                      this.añadirNuevaLIsta(arrayObtenido);
-                      document.getElementById('container').setAttribute("style", "visibility: hidden");
-                    }
+                      if(cont) {
+                        arrayObtenido.push(alertData.name1);
+                        this.añadirNuevaLista(arrayObtenido, alertData.name1);
+                        document.getElementById('container').setAttribute("style", "visibility: hidden");
+                      }
+                  }
+                }
+                  }
+                  
+            ]
+    });
+    await alert.present();
+    }else {
+      const errorAlert = await this.alertController.create({
+        header: 'Error',
+        message: 'Existe una lista con el mismo nombre',
+        cssClass: 'errorAlert',
+         buttons: [
+              {
+                text: 'ok',
+                role: 'ok',
+                cssClass: 'secondary',
+                handler: () => {
+                  console.log('Confirm Cancel');
                 }
               }
-                }
-                
-          ]
-  });
-  await alert.present();
+                  
+            ]
+    });
+    await errorAlert.present();
+    }
+    
   }
 // funcion añadir nueva lista
-  async añadirNuevaLIsta(arryLista) {
-    await this.firestoreService.actualizarMod('usuarios', this.router.url.replace('/home/', ''), arryLista);
+  async añadirNuevaLista(arryLista, nombreLista) {
+    let uuid = this.router.url.replace('/home/', '');
+    await this.firestoreService.actualizarMod('usuarios', uuid, arryLista);
+    await this.firestoreService.crearLista('usuarios', uuid, nombreLista)
+  }
+
+  goLista(nomLista) {
+    this.router.navigate(['/lista/'+this.router.url.replace('/home/', '')+'/'+nomLista]);
   }
 }

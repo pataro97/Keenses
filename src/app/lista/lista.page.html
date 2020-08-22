@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{nomLista}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar id="progressBa" type="indeterminate"></ion-progress-bar>
+  <ion-slides id="contSlider" pager="true" [options]="slideOpts">
+
+    <ion-slide>
+      <div class="slides">
+        <img style="width: 30%" src="https://emslieoptical.com.au/img/0042/363.png"/>
+        <h2>Lentillas</h2>
+        <div id="estadoLentillas">
+          <h3>Estado de las lentillas:<a id="colorEstado">{{estadoLen}}</a></h3>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div>1 of 2</div>
+              </ion-col>
+              <ion-col>
+                <div>2 of 2</div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-button fill="clear"><h3><b>{{text}}</b></h3></ion-button>
+        </div>
+        <div id="mensajeNoLentillas">
+          <h3>No hay lentillas registradas</h3>
+          <ion-button (click)="comenzarLent()">Comenzar</ion-button>
+        </div>
+       
+      </div>
+    </ion-slide>
+
+
+    <ion-slide>
+      <div class="slides">
+        <img style="width: 30%" src="https://cdn0.iconfinder.com/data/icons/medical-and-health-cool-vector-3/128/108-512.png"/>
+        <h2>Liquido</h2>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div>1 of 2</div>
+            </ion-col>
+            <ion-col>
+              <div>2 of 2</div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+  
+</ion-content>

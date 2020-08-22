@@ -1,0 +1,15 @@
+// importar fuente
+
+ion-slides {
+    height: 100%;
+    --bullet-background: rgb(0, 0, 0);
+    --bullet-background-active: rgb(51, 58, 153);
+}
+
+#estadoLentillas {
+    visibility: hidden;
+    display: none;
+}
+#mensajeNoLentillas {
+    visibility: hidden;
+}

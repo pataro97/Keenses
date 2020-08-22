@@ -57,4 +57,18 @@ export class FirestoreService {
   }
   
 
+  // actualizar mod
+  public añadirLista(coleccion, documentId, datos) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).update(datos)
+  }
+  
+
+    // Crear listas
+    public crearLista(nomColl, uid, nombreList) {
+      return this.angularFirestore.collection(nomColl).doc(uid+";"+nombreList).set({
+        //campos creados base datos
+        nombre: nombreList
+      })
+    }
+
 }

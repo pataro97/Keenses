@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
   },
+  {
+    path: 'lista/:id/:id',
+    loadChildren: () => import('./lista/lista.module').then( m => m.ListaPageModule)
+  },
+
 
 ];
 

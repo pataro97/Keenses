@@ -15,8 +15,8 @@
     </ion-toolbar>
   </ion-header>
   <!-- Listas  -->
-  <ion-item *ngFor="let arrayLista of dbUsuarios.data.listas">
-    <mat-card>{{arrayLista}}</mat-card><ion-icon name="trash-outline"></ion-icon>
+  <ion-item *ngFor="let arrayLista of dbUsuarios.data.listas" (click)="goLista(arrayLista)">
+    <mat-card>{{arrayLista}}</mat-card>
   </ion-item>
   <!-- Mensaje si no hay listas -->
   <div id="container" style="visibility: hidden;">
