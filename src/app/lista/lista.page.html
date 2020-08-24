@@ -27,7 +27,6 @@
                 <div><ion-button (click)="res()"><ion-icon name="remove-circle-outline"></ion-icon></ion-button> <ion-button (click)="sum()"><ion-icon name="add-circle-outline"></ion-icon></ion-button></div>
               </ion-col>
             </ion-row>
-            <!-- liquido -->
             <ion-row>
               <ion-col id="mostrarDias">
                 <div>Dias restantes liquido: {{this.dbUsuarios.data.diasLiq}}</div>
@@ -53,7 +52,7 @@
       <div class="slides">
         <img style="width: 30%" src="https://cdn0.iconfinder.com/data/icons/medical-and-health-cool-vector-3/128/108-512.png"/>
         <h2>Liquido</h2>
-        <ion-grid>
+        <ion-grid id="menuLiq">
           <ion-row>
             <ion-col>
               <div>1 of 2</div>
@@ -63,6 +62,18 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        <!-- datepicker -->
+        <div id="menuIniLiq">
+          <ion-item>
+            <ion-label>Selecciona fecha inicio:</ion-label>
+            <ion-datetime color="primary">20/8/20202</ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Días de caducidad:</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-button (click)="comenzarLiq()">Comenzar</ion-button>
+        </div>
       </div>
     </ion-slide>
 

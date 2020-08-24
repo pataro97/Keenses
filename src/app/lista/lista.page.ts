@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirestoreService } from '../services/firestore/firestore.service'
+import { FirestoreService } from '../services/firestore/firestore.service';
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.page.html',
@@ -58,8 +58,10 @@ export class ListaPage implements OnInit {
         // mensaje liquido en [menu] lentillas
         if (this.dbUsuarios.data.diasLiq) {
           document.getElementById("mostrarDias").setAttribute("style", "visibility: visible; display: block");
+          document.getElementById("menuLiq").setAttribute("style", "visibility: visible; display: block");
         } else {
           document.getElementById("mostrarError").setAttribute("style", "visibility: visible; display: block");
+          document.getElementById("menuIniLiq").setAttribute("style", "visibility: visible; display: block");
         }
 
   }
