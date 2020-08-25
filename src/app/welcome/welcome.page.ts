@@ -13,7 +13,7 @@ export class WelcomePage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
   constructor(private router: Router, private devices: Device) { }
   
-  text: string = "Lee";
+  text: string = "Saltar";
 
   ngOnInit() {
     if(localStorage['firstTimeLoad']!='TRUE'){
@@ -32,7 +32,7 @@ export class WelcomePage implements OnInit {
 
   slideChanged() {
     if (this.slides.isEnd()) {
-      this.text = "Vale, Me lo compro";
+      this.text = "Ok";
     }
   }
 }
