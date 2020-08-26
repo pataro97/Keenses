@@ -29,7 +29,7 @@
             </ion-row>
             <ion-row>
               <ion-col id="mostrarDias">
-                <div>Dias restantes liquido: {{this.dbUsuarios.data.diasLiq}}</div>
+                <div>Dias restantes liquido: {{this.dbUsuarios.data.diasCad}}</div>
               </ion-col>
               <ion-col id="mostrarError">
                 <div>No hay liquido registrado</div>
@@ -53,12 +53,31 @@
         <img style="width: 30%" src="https://cdn0.iconfinder.com/data/icons/medical-and-health-cool-vector-3/128/108-512.png"/>
         <h2>Liquido</h2>
         <ion-grid id="menuLiq">
+          <!-- fecha inicio -->
           <ion-row>
             <ion-col>
-              <div>1 of 2</div>
+              <div>Fecha en la que se abrió: </div>
             </ion-col>
             <ion-col>
-              <div>2 of 2</div>
+              <div>{{this.dbUsuarios.data.fechIniC}}</div>
+            </ion-col>
+          </ion-row>
+          <!-- fecha inicio -->
+          <ion-row>
+            <ion-col>
+              <div>Fecha máxima producto: </div>
+            </ion-col>
+            <ion-col>
+              <div>{{this.fechaFinal}}</div>
+            </ion-col>
+          </ion-row>
+          <!-- dias restantes -->
+          <ion-row>
+            <ion-col>
+              <div>Días restantes: </div>
+            </ion-col>
+            <ion-col>
+              <div>{{this.dbUsuarios.data.diasCad}}</div>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -66,13 +85,16 @@
         <div id="menuIniLiq">
           <ion-item>
             <ion-label>Selecciona fecha inicio:</ion-label>
-            <ion-datetime color="primary">20/8/20202</ion-datetime>
+            <ion-datetime [(ngModel)]="mydate" color="primary" display-format="DD MMM, YYYY" (ionChange)="changeDate()" type="number"></ion-datetime>
           </ion-item>
-          <ion-item>
-            <ion-label>Días de caducidad:</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-          <ion-button (click)="comenzarLiq()">Comenzar</ion-button>
+          <div id="botCad">
+            <ion-item>
+              <ion-label>Días de caducidad:</ion-label>
+              <ion-input [(ngModel)]="caDias" placeholder="90" type="number"></ion-input>
+            </ion-item>
+            <ion-button (click)="comenzarLiq(mydate, caDias)">Comenzar</ion-button>
+          </div>
+         
         </div>
       </div>
     </ion-slide>
