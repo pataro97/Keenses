@@ -13,7 +13,6 @@ export class ListaPage implements OnInit {
     data: {}
   };
   estadoLen = "Bueno";
-  estadoLiq = "Bueno";
   UUID;
   nomLista;
   fechaFinal;
@@ -44,6 +43,19 @@ export class ListaPage implements OnInit {
 
         this.estadoLen = this.dbUsuarios.data.estado
 
+            // mod estado liq
+        if(this.dbUsuarios.data.diasCad <= 0) {
+          this.dbUsuarios.data.estado = "Malo";
+          this.estadoLen = "Malo";
+          this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+        } else {
+          
+          if(this.dbUsuarios.data.estado){
+            this.dbUsuarios.data.estado = "Bueno";
+          }
+          this.estadoLen = "Bueno";
+          this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+        }
         switch (this.estadoLen){
           case "Bueno":
             document.getElementById("colorEstado").setAttribute("style", "color: green");
@@ -93,7 +105,6 @@ export class ListaPage implements OnInit {
           document.getElementById("menuIniLiq").setAttribute("style", "visibility: visible; display: block");
           document.getElementById("botCad").setAttribute("style", "visibility: hidden; display: none");
         }
-
   }
 
   restaFechas = function(f1,f2) {
@@ -147,16 +158,23 @@ export class ListaPage implements OnInit {
 
   async sum() {
     this.dbUsuarios.data.diasUso++;
-    if(this.dbUsuarios.data.diasUso <= 14) {
-      this.dbUsuarios.data.estado = "Bueno";
-      await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
-    } else if(this.dbUsuarios.data.diasUso >=  15 && this.dbUsuarios.data.diasUso <=  29) {
-      this.dbUsuarios.data.estado = "Usadas";
-      await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
-    } else if(this.dbUsuarios.data.diasUso >= 30) {
+    // mod estado liq
+    if(this.dbUsuarios.data.diasCad <= 0) {
       this.dbUsuarios.data.estado = "Malo";
       await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+    }else {
+      if(this.dbUsuarios.data.diasUso <= 14) {
+        this.dbUsuarios.data.estado = "Bueno";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      } else if(this.dbUsuarios.data.diasUso >=  15 && this.dbUsuarios.data.diasUso <=  29) {
+        this.dbUsuarios.data.estado = "Usadas";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      } else if(this.dbUsuarios.data.diasUso >= 30) {
+        this.dbUsuarios.data.estado = "Malo";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      }
     }
+    
 
     // actualizar estado
     this.estadoLen = this.dbUsuarios.data.estado;
@@ -177,16 +195,23 @@ export class ListaPage implements OnInit {
 
   async res() {
     this.dbUsuarios.data.diasUso--;
-    if(this.dbUsuarios.data.diasUso <= 14) {
-      this.dbUsuarios.data.estado = "Bueno";
-      await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
-    } else if(this.dbUsuarios.data.diasUso >=  15 && this.dbUsuarios.data.diasUso <=  29) {
-      this.dbUsuarios.data.estado = "Usadas";
-      await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
-    } else if(this.dbUsuarios.data.diasUso >= 30) {
+    // mod estado liq
+    if(this.dbUsuarios.data.diasCad <= 0) {
       this.dbUsuarios.data.estado = "Malo";
       await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+    }else {
+      if(this.dbUsuarios.data.diasUso <= 14) {
+        this.dbUsuarios.data.estado = "Bueno";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      } else if(this.dbUsuarios.data.diasUso >=  15 && this.dbUsuarios.data.diasUso <=  29) {
+        this.dbUsuarios.data.estado = "Usadas";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      } else if(this.dbUsuarios.data.diasUso >= 30) {
+        this.dbUsuarios.data.estado = "Malo";
+        await this.firestoreService.actualizar('usuarios', this.UUID+";"+this.nomLista, this.dbUsuarios.data)
+      }
     }
+    
 
     // actualizar estado
     this.estadoLen = this.dbUsuarios.data.estado;
@@ -229,4 +254,8 @@ export class ListaPage implements OnInit {
     this.dataManagement();
   }
 
+  newLiq() {
+    document.getElementById("menuLiq").setAttribute("style", "visibility: hidden; display: none");
+    document.getElementById("menuIniLiq").setAttribute("style", "visibility: visible; display: block");
+  }
 }

@@ -72,7 +72,6 @@ export class HomePage {
               }, {
                 text: 'Ok',
                 handler: (alertData) => {
-                  document.getElementById('container').setAttribute("style", "visibility: visible");
                   console.log(alertData.name1);
                   let cont = true;
                   if(alertData.name1 != "") {
@@ -127,5 +126,18 @@ export class HomePage {
 
   goLista(nomLista) {
     this.router.navigate(['/lista/'+this.router.url.replace('/home/', '')+'/'+nomLista]);
+  }
+
+  borrarLista(listaN) {
+    let arrOb = [];
+    let uuid = this.router.url.replace('/home/', '');
+
+    this.firestoreService.borrar('usuarios' , uuid+';'+listaN);
+    for(let i = 0;this.dbUsuarios.data.listas.length > i; i++){
+      if(listaN != this.dbUsuarios.data.listas[i]){
+        arrOb.push(this.dbUsuarios.data.listas[i]);
+      }
+    }
+    this.firestoreService.actualizarMod('usuarios', uuid, arrOb)
   }
 }
