@@ -18,7 +18,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

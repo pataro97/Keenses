@@ -19,7 +19,6 @@ export class HomePage {
   constructor(private router: Router, private firestoreService: FirestoreService, private alertController: AlertController) {  }
 
   ngOnInit() {
-
     let UUID = this.router.url.replace('/home/', '');
 
     this.firestoreService.consultarPorId("usuarios", UUID).subscribe((resultado) => {

@@ -1,32 +1,33 @@
 // importar fuente
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
-  ion-slides {
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    --bullet-background: red;
-    --bullet-background-active: rebeccapurple;
-    //Efecto
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-  }
 
-  ion-img {
-    width: 200px;
-  }
+ion-slides {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  --bullet-background: red;
+  --bullet-background-active: rebeccapurple;
+  //Efecto
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+ion-img {
+  width: 200px;
+}
 
-  ion-button {
-    color: rebeccapurple;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+ion-button {
+  color: rebeccapurple;
+}

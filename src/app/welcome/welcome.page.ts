@@ -20,8 +20,7 @@ export class WelcomePage implements OnInit {
       // primera vez que entra app
       localStorage['firstTimeLoad']='TRUE';
       // this.router.navigate(["/welcome"]);
-    }
-    else{
+    } else{
       // ha entrado alguna vez(no logeado)
       this.goHome();
     }

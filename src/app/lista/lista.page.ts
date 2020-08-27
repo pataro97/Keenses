@@ -9,9 +9,11 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 export class ListaPage implements OnInit {
 
   constructor(private router: Router, private firestoreService: FirestoreService) {  }
+  
   dbUsuarios: any = {
     data: {}
   };
+
   estadoLen = "Bueno";
   UUID;
   nomLista;
